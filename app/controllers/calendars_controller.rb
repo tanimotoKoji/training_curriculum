@@ -2,7 +2,8 @@ class CalendarsController < ApplicationController
 
   # １週間のカレンダーと予定が表示されるページ
   def index
-    getweek
+    get_date
+
     @plan = Plan.new
   end
 
@@ -18,7 +19,8 @@ class CalendarsController < ApplicationController
     params.require(:plan).permit(:date, :plan)
   end
 
-  def getweek
+
+  def get_date
     wdays = ['(日)','(月)','(火)','(水)','(木)','(金)','(土)']
     wday_num = Date.today.wday#Date.today.wdayを利用して添字となる数値を得る
     # Dateオブジェクトは、日付を保持しています。下記のように`.today.day`とすると、今日の日付を取得できます。
